@@ -1,30 +1,17 @@
 import React from 'react';
-import {useQuery} from 'react-query';
-import axios from 'axios';
+import {ReactQueryDevtools} from 'react-query-devtools';
 
-function App() {
-  const queryInfo = useQuery('pokemon', async() => {
-    await new Promise (resolve => setTimeout(resolve, 500))
-    // if(true){
-    //   throw new Error('Test Error')
-    // }    
-    return axios
-        .get('https://pokeapi.co/api/v2/pokemon/')
-        .then(res =>  res.data.results)
-    }
-  );
+//components
+import Pokemon from './components/Pokemon';
 
-  return queryInfo.isLoading ? (
-    'Loading..'
-    ) : queryInfo.isError ? (
-      queryInfo.error.message
-    ) : (
-      <div>
-        {queryInfo.data.map(item => {
-          return <div key={item.name}>{item.name}</div>
-        })}
-      </div>
-  );
+
+function App(){
+  return(
+    <div>
+      <Pokemon />
+      <ReactQueryDevtools />
+    </div>
+  )
 }
 
 export default App;
