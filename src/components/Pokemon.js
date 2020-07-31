@@ -2,14 +2,14 @@ import React from 'react';
 import {useQuery} from 'react-query';
 import axios from 'axios';
 
-export default function Pokemon() {
-  const queryInfo = useQuery('pokemon', async() => {
+export default function Pokemon({queryKey}) {
+  const queryInfo = useQuery(queryKey, async() => {
     await new Promise (resolve => setTimeout(resolve, 500))
     return axios
         .get('https://pokeapi.co/api/v2/pokemon/')
         .then(res =>  res.data.results)
     }, {
-        staleTime: 5000,
+        cacheTime: 5000,
     }
   );
 

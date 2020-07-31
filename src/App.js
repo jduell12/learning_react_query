@@ -8,7 +8,8 @@ import Pokemon from './components/Pokemon';
 function App(){
   return(
     <div>
-      <Pokemon />
+      <Pokemon queryKey={'pokemon1'}/>
+      <Pokemon queryKey={'pokemon1'} />
       <ReactQueryDevtools />
     </div>
   )
