@@ -8,6 +8,8 @@ export default function Pokemon() {
     return axios
         .get('https://pokeapi.co/api/v2/pokemon/')
         .then(res =>  res.data.results)
+    }, {
+        staleTime: 5000,
     }
   );
 
@@ -20,6 +22,8 @@ export default function Pokemon() {
         {queryInfo.data.map(item => {
           return <div key={item.name}>{item.name}</div>
         })}
+        <br/>
+        {queryInfo.isFetching ? 'Updaing...' : null}
       </div>
   );
 }
